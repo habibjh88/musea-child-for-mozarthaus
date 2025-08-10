@@ -1,0 +1,221 @@
+/*
+Template: musea
+Theme Name: Musea Child
+Theme URI: https://example.com/
+Description: Child theme for the Musea theme
+Author: Your Name
+Author URI: https://example.com/
+Version: 1.0.0
+*/
+
+:root {
+    --site-primary-color: #8C1919; /* Base color */
+    --site-primary-light: #ff3b3b; /* Lighter version */
+    --site-primary-dark: #660F0F; /* Darker version */
+    --site-primary-soft: #f7ecec; /* Very soft light version */
+}
+
+.bg-primary-soft {
+    background-color: var(--site-primary-soft);
+}
+
+.bg-primary {
+    background-color: var(--site-primary-color);
+}
+
+.eltdf-side-menu-slide-from-right .eltdf-wrapper {
+    background: #000;
+}
+
+.eltdf-page-header .eltdf-menu-area .eltdf-logo-wrapper a {
+    min-height: 50px !important;
+}
+
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover,
+a:hover, p a:hover {
+    color: var(--site-primary-color);
+}
+
+body .eltdf-st-caption {
+    color: var(--site-primary-color);
+}
+
+.eltdf-page-footer .widget a:hover, blockquote.wp-block-pullquote, .wp-block-pullquote p, .eltdf-top-bar .eltdf-icon-widget-holder:hover .eltdf-icon-element, .eltdf-top-bar .eltdf-icon-widget-holder:hover .eltdf-icon-text, .eltdf-light-header .eltdf-page-header > div:not(.eltdf-sticky-header):not(.fixed) .eltdf-search-opener:hover, .eltdf-light-header .eltdf-top-bar .eltdf-search-opener:hover, .eltdf-dark-header .eltdf-page-header > div:not(.eltdf-sticky-header):not(.fixed) .eltdf-search-opener:hover, .eltdf-dark-header .eltdf-top-bar .eltdf-search-opener:hover, .eltdf-light-header .eltdf-page-header > div:not(.eltdf-sticky-header) .eltdf-search-opener:hover, .eltdf-light-header .eltdf-top-bar .eltdf-search-opener:hover, .eltdf-dark-header .eltdf-page-header > div:not(.eltdf-sticky-header) .eltdf-search-opener:hover, .eltdf-dark-header .eltdf-top-bar .eltdf-search-opener:hover, .eltdf-side-menu-button-opener.opened, .eltdf-side-menu-button-opener:hover {
+    color: var(--site-primary-light) !important;
+}
+
+body .eltdf-fullscreen-search-holder .eltdf-search-close.eltdf-search-close-svg-path:hover path,
+body .eltdf-portfolio-list-holder article .eltdf-pli-link .eltdf-pl-item-plus svg line,
+body .eltdf-btn.eltdf-btn-outline-slit svg rect {
+    stroke: var(--site-primary-color);
+}
+
+.eltdf-page-header .eltdf-btn.eltdf-btn-outline-slit svg rect {
+    stroke: #FFFFFF !important;
+}
+
+.eltdf-main-menu > ul > li > a > span.item_outer:before {
+    border-top-color: #FFFFFF !important;
+}
+
+/*Button Style*/
+
+body .eltdf-btn.eltdf-btn-outline-slit {
+    position: relative;
+    z-index: 1;
+}
+
+body .eltdf-btn.eltdf-btn-outline-slit::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    bottom: 4px;
+    right: 3px;
+    width: auto;
+    background: transparent;
+    transition: 0.4s;
+    z-index: -1;
+    height: calc(100% - 7px);
+}
+
+body .eltdf-btn.eltdf-btn-outline-slit:hover::before {
+    background-color: var(--site-primary-color);
+}
+
+body .eltdf-btn.eltdf-btn-outline-slit:not(.eltdf-btn-custom-hover-color):hover,
+body .eltdf-btn.eltdf-btn-outline-slit:hover,
+body .eltdf-btn.eltdf-btn-outline-slit:hover .eltdf-btn-text {
+    color: #FFFFFF !important;
+}
+
+/*Testimonial*/
+.eltdf-testimonials-holder.eltdf-testimonials-standard .eltdf-testimonial-text {
+    font-size: 26px;
+    color: #000;
+}
+
+.eltdf-testimonials-holder.eltdf-testimonials-standard .eltdf-testimonial-author {
+    font-size: 1.3em;
+    color: var(--site-primary-color)
+}
+
+body .eltdf-testimonials-holder.eltdf-testimonials-standard .eltdf-testimonials-author-job {
+    font-size: 20px;
+    color: #565656
+}
+
+.eltdf-testimonials-holder.eltdf-testimonials-standard .owl-nav .owl-next,
+.eltdf-testimonials-holder.eltdf-testimonials-standard .owl-nav .owl-prev {
+    background: var(--site-primary-soft);
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: 0.4s;
+    border: 1px solid var(--site-primary-color);
+}
+
+.eltdf-owl-slider .owl-nav .owl-next svg polyline,
+.eltdf-owl-slider .owl-nav .owl-prev svg polyline {
+    stroke: var(--site-primary-color);
+}
+
+.eltdf-testimonials-holder.eltdf-testimonials-standard .owl-nav .owl-next:hover,
+.eltdf-testimonials-holder.eltdf-testimonials-standard .owl-nav .owl-prev:hover {
+    border-color: var(--site-primary-light);
+}
+
+.eltdf-owl-slider .owl-nav .owl-next:hover svg polyline,
+.eltdf-owl-slider .owl-nav .owl-prev:hover svg polyline {
+    stroke: var(--site-primary-color);
+}
+
+.eltdf-owl-slider .owl-nav .owl-next svg, .eltdf-owl-slider .owl-nav .owl-prev svg {
+    height: 20px;
+}
+
+.eltdf-testimonials-holder.eltdf-testimonials-standard .eltdf-testimonials-quotes-holder svg {
+    padding: 0 5px;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    opacity: .2;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 5px;
+    z-index: -1;
+}
+
+.eltdf-testimonials-holder.eltdf-testimonials-standard .eltdf-testimonials-quotes-holder svg path {
+    fill: var(--site-primary-soft);
+}
+
+.eltdf-owl-slider .owl-dots .owl-dot.active span,
+.eltdf-owl-slider .owl-dots .owl-dot:hover span {
+    background-color: var(--site-primary-color);
+    border-color: var(--site-primary-color);
+}
+
+/*Accordian*/
+.eltdf-accordion-holder.eltdf-ac-simple .eltdf-accordion-title {
+    padding: 23px 0 23px 30px !important;
+}
+
+.eltdf-accordion-holder.eltdf-ac-simple .eltdf-accordion-title.ui-state-active {
+    color: var(--site-primary-color);
+    border-bottom-color: var(--site-primary-color);
+}
+
+.eltdf-accordion-holder.eltdf-ac-simple .eltdf-accordion-content {
+    padding: 31px 58px 12px 36px;
+    font-size: 1.1em !important;
+}
+
+.eltdf-accordion-holder .eltdf-accordion-title.ui-state-active .eltdf-accordion-mark span.eltdf_icon_minus,
+.eltdf-accordion-holder .eltdf-accordion-title.ui-state-hover .eltdf-accordion-mark span.eltdf_icon_minus {
+    color: var(--site-primary-color);;
+}
+
+.eltdf-accordion-holder .eltdf-accordion-title.ui-state-default .eltdf-accordion-mark {
+    top: 52%;
+}
+
+.eltdf-side-menu .widget a.eltdf-social-icon-widget-holder {
+    font-size: 20px !important;
+}
+
+.eltdf-side-menu .widget a.eltdf-social-icon-widget-holder:hover {
+    color: var(--site-primary-color) !important;
+}
+
+#shop-front.new_event_page div.tt_reset div.new-page-body div.listing p span.buy_tickets_button, #shop-front.new_event_page .btn, #shop-front.new_event_page .btn:hover {
+    background-color: var(--site-primary-color) !important;
+}
+
+.eltdf-mobile-header .eltdf-mobile-header-inner {
+    height: 100px;
+}
+
+body .eltdf-page-header::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .4), transparent);
+}
+
+body .eltdf-top-bar {
+    z-index: 99999;
+}
+
+/*Menu CSS*/
+@media (max-width: 1256px) {
+    .eltdf-main-menu > ul > li > a {
+        padding-left: 10px;
+        padding-right: 10px;
+        letter-spacing: 1px;
+    }
+}
