@@ -26,5 +26,18 @@ function musea_child_styles() {
 
 }
 
+add_filter( 'body_class', function( $classes ) {
+    $meta_content = get_post_meta( get_the_ID(), '_musea_layout_option', true );
+    if( 'content-layout' === $meta_content ) {
+	    $classes[] = 'musea-layout-content';
+    }
+	if( 'content-layout-narrow' === $meta_content ) {
+	    $classes[] = 'musea-layout-content narrow';
+    }
+
+	return $classes;
+} );
+
 // Include WPBakery custom elements
 require_once get_stylesheet_directory() . '/wpbakery/init.php';
+require_once get_stylesheet_directory() . '/inc/meta.php';

@@ -22,27 +22,53 @@ function mozart_register_title_buttons_block() {
 				'heading'     => __( 'Title', 'mozart-child' ),
 				'param_name'  => 'title',
 				'admin_label' => true,
+				'group'       => __( 'Content', 'mozart-child' ),
 			),
 			array(
 				'type'       => 'textarea_html',
 				'heading'    => __( 'Content', 'mozart-child' ),
 				'param_name' => 'content',
+				'group'      => __( 'Content', 'mozart-child' ),
 			),
 			array(
 				'type'       => 'textfield',
 				'heading'    => __( 'Button 1 Text', 'mozart-child' ),
 				'param_name' => 'btn1_text',
+				'group'      => __( 'Content', 'mozart-child' ),
 			),
 			array(
 				'type'       => 'textfield',
 				'heading'    => __( 'Button 2 Text', 'mozart-child' ),
 				'param_name' => 'btn2_text',
+				'group'      => __( 'Content', 'mozart-child' ),
+			),
+			array(
+				'type'       => 'textfield',
+				'heading'    => __( 'Reviews Text', 'mozart-child' ),
+				'param_name' => 'reviews_text',
+				'group'      => __( 'Content', 'mozart-child' ),
+			),
+			array(
+				'type'       => 'textfield',
+				'heading'    => __( 'Location', 'mozart-child' ),
+				'param_name' => 'location',
+				'group'      => __( 'Content', 'mozart-child' ),
 			),
 			array(
 				'type'        => 'attach_images',
 				'heading'     => __( 'Slider Images', 'mozart-child' ),
 				'param_name'  => 'slider_images',
 				'description' => __( 'Upload or select multiple images for the slider.', 'mozart-child' ),
+				'group'       => __( 'Content', 'mozart-child' ),
+			),
+
+			//Style
+			array(
+				'type'        => 'textfield',
+				'heading'     => __( 'Slider Height', 'mozart-child' ),
+				'param_name'  => 'slider_height',
+				'description' => __( 'Enter only height. ex. 400', 'mozart-child' ),
+				'group'       => __( 'Style', 'mozart-child' ),
 			),
 		),
 	) );
@@ -55,6 +81,9 @@ function mozart_render_title_buttons_block( $atts, $content = null ) {
 		'btn1_text'     => '',
 		'btn2_text'     => '',
 		'slider_images' => '',
+		'slider_height' => '',
+		'reviews_text'  => '',
+		'location'      => ''
 	), $atts ) );
 
 
@@ -83,10 +112,31 @@ function mozart_render_title_buttons_block( $atts, $content = null ) {
 			<?php endif; ?>
         </div>
 
+        <div class="reviews-location">
+
+			<?php if ( $reviews_text ) : ?>
+                <div class="ratings">
+                    <span class="rating-starts">★★★★★</span>
+                    <span><?php echo esc_html( $reviews_text ) ?></span>
+                </div>
+			<?php endif; ?>
+
+			<?php if ( $location ) : ?>
+                <div class="location">
+                    <svg focusable="false" fill="currentColor" aria-hidden="true" viewBox="0 0 24 24"
+                         data-testid="LocationOnIcon"
+                         class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall MuiChip-icon MuiChip-iconMedium MuiChip-iconColorDefault re-c-sltwyi">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+                    </svg>
+                    <span><?php echo esc_html( $location ) ?></span>
+                </div>
+			<?php endif; ?>
+        </div>
+
 		<?php if ( $slider_images ) :
 			$image_ids = explode( ',', $slider_images );
-			$slider_height = 500;
-            $total_images = count( $image_ids );
+			$slider_height = $slider_height ? str_replace( 'px', '', $slider_height ) : 500;
+			$total_images = count( $image_ids );
 			$thumb_height = $slider_height / $total_images;
 			?>
 
