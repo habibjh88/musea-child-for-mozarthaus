@@ -5,7 +5,7 @@ Theme URI: https://example.com/
 Description: Child theme for the Musea theme
 Author: Your Name
 Author URI: https://example.com/
-Version: 1.0.3
+Version: 1.0.6
 */
 
 :root {
@@ -18,7 +18,6 @@ Version: 1.0.3
     --title-font: "EB Garamond";
     --slider-height: 400px;
 }
-
 
 @font-face {
     font-family: 'Chopin Script';
@@ -79,17 +78,26 @@ Version: 1.0.3
 .pt-150 {
     padding-top: 80px;
 }
+
 .pb-150 {
     padding-top: 80px;
 }
+
 .text-center {
     text-align: center;
 }
+
 .text-left {
     text-align: left;
 }
+
 .text-right {
     text-align: right;
+}
+
+.mozart-box-shadow-wrap,
+.mozart-box-shadow img {
+    box-shadow: 0 7px 36px 0 rgb(82 4 6 / 32%) !important;
 }
 
 
@@ -97,15 +105,19 @@ Version: 1.0.3
     .pt-150 {
         padding-top: 120px;
     }
+
     .pb-150 {
         padding-top: 120px;
     }
+
     .text-sm-center {
         text-align: center;
     }
+
     .text-sm-left {
         text-align: left;;
     }
+
     .text-sm-right {
         text-align: right;
     }
@@ -115,15 +127,19 @@ Version: 1.0.3
     .pt-150 {
         padding-top: 150px;
     }
+
     .pb-150 {
         padding-top: 150px;
     }
+
     .text-lg-center {
         text-align: center;
     }
+
     .text-lg-left {
         text-align: left;
     }
+
     .text-lg-right {
         text-align: right;
     }
@@ -243,11 +259,16 @@ body .eltdf-sticky-header .eltdf-btn.eltdf-btn-outline-slit svg rect {
     stroke: rgba(255, 255, 255, .5);
 }
 
-body .eltdf-main-menu > ul > li > a > span.item_outer:before {
-    border-top-color: #FFFFFF !important;
+@media (max-width: 767px) {
+    .eltdf-single-image-holder .eltdf-si-inner img {
+        width: 100%;
+    }
 }
 
 /*Button Style*/
+body .eltdf-btn {
+    line-height: 32px;
+}
 
 body .eltdf-btn.eltdf-btn-outline-slit {
     position: relative;
@@ -476,15 +497,33 @@ body .eltdf-top-bar {
     z-index: 99999;
 }
 
+
 /*Menu CSS*/
-@media (max-width: 1256px) {
+@media (min-width: 1600px) {
     body .eltdf-main-menu > ul > li > a {
-        padding-left: 10px;
-        padding-right: 10px;
-        letter-spacing: 1px;
+        font-size: 14px;
     }
 }
 
+@media (max-width: 1599px) {
+    body .eltdf-main-menu > ul > li > a {
+        padding-left: 10px;
+        padding-right: 10px;
+        letter-spacing: 0;
+    }
+}
+
+@media (max-width: 1200px) {
+    body .eltdf-main-menu > ul > li > a {
+        padding-left: 8px;
+        padding-right: 8px;
+
+    }
+}
+
+body .eltdf-main-menu > ul > li > a > span.item_outer:before {
+    border-top-color: #FFFFFF !important;
+}
 
 body .eltdf-logo-wrapper {
     padding: 10px 0;
@@ -495,12 +534,15 @@ body .eltdf-logo-wrapper img {
     width: auto;
 }
 
+body .eltdf-full-width-inner {
+    padding-top: 0 !important;
+}
+
+body .eltdf-main-menu ul li a .eltdf-menu-featured-icon {
+    top: -1px;
+}
+
 @media (max-width: 1350px) {
-    body .eltdf-main-menu > ul > li > a {
-        padding-left: 10px;
-        padding-right: 10px;
-        font-size: 12px;
-    }
 
     body .eltdf-main-menu > ul {
         height: 91%;
@@ -513,6 +555,9 @@ body .eltdf-logo-wrapper img {
     body .eltdf-position-right .eltdf-icon-widget-holder {
         margin-right: 10px !important;
         margin-left: 10px !important;
+    }
+    body .eltdf-top-bar .eltdf-position-right {
+        display: none;
     }
 }
 
@@ -549,6 +594,12 @@ body .eltdf-sticky-header .eltdf-sticky-holder .eltdf-logo-wrapper a,
 .eltdf-page-header .eltdf-menu-area .eltdf-logo-wrapper a {
     max-height: 52px !important;
 }
+@media (max-width: 1400px) {
+    body .eltdf-sticky-header .eltdf-sticky-holder .eltdf-logo-wrapper a,
+    .eltdf-page-header .eltdf-menu-area .eltdf-logo-wrapper a {
+        max-height: 42px !important;
+    }
+}
 
 body .eltdf-sticky-header {
     height: 90px;
@@ -570,16 +621,23 @@ body .eltdf-page-footer .eltdf-footer-top-holder::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("./assets/img/vilon-6.png");
     background-repeat: repeat;
     background-position: top right;
-    opacity: .3;
+    opacity: .22;
     mix-blend-mode: multiply;
     background-size: cover;
 }
 
 .eltdf-menu-area.eltdf-menu-left .eltdf-position-right-inner .eltdf-btn-outline-slit svg {
     opacity: .6;
+}
+@media (max-width: 1400px) {
+
+    .eltdf-position-right .eltdf-position-right-inner .eltdf-btn {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        margin-right: 0 !important;
+    }
 }
 
 .mozarthaus-ticket .tt-widget-inline iframe {
@@ -1148,3 +1206,58 @@ body .eltdf-page-grid {
         height: 250px !important;
     }
 }
+
+@media (max-width: 1024px) {
+    .eltdf-workflow .eltdf-workflow-item-inner .eltdf-workflow-image img {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/*Slider Gallery */
+.mozart-swiper-slider {
+    position: relative;
+    overflow: hidden;
+    height: var(--slider-height);
+    --swiper-theme-color: var(--site-primary-color)
+}
+
+.mozart-swiper-slider .swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.mozart-swiper-slider .swiper-slide {
+    height: 100%;
+}
+
+.mozart-swiper-slider .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.mozart-swiper-slider .swiper-button-next,
+.mozart-swiper-slider .swiper-button-prev {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    border-radius: 50%;
+    transition: background 0.3s;
+    width: 32px;
+    height: 32px;
+}
+
+.mozart-swiper-slider .swiper-button-next::after,
+.mozart-swiper-slider .swiper-button-prev::after {
+    font-size: 18px;
+}
+
+.mozart-swiper-slider .swiper-button-next:hover,
+.mozart-swiper-slider .swiper-button-prev:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/*End Slider gallery 2*/
