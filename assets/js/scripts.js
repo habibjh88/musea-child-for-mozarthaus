@@ -76,17 +76,65 @@
 
         }
 
-        $(document).ready(function(){
-            // Target all active/open accordion contents and close them
-            $('.eltdf-accordion-holder .ui-accordion-content-active')
-                .removeClass('ui-accordion-content-active')
-                .hide();
 
-            // Also remove active classes from their headers
-            $('.eltdf-accordion-holder .ui-accordion-header-active')
-                .removeClass('ui-accordion-header-active ui-state-active')
-                .addClass('ui-state-default');
-        });
+        var accordions = {};
+        eltdf = window.eltdf || {}; // Ensure eltdf exists
+        eltdf.modules = eltdf.modules || {};
+        eltdf.modules.accordions = accordions;
+
+        accordions.eltdfInitAccordions = eltdfInitAccordions;
+        accordions.eltdfOnDocumentReady = eltdfOnDocumentReady;
+
+        $(document).ready(eltdfOnDocumentReady);
+
+        function eltdfOnDocumentReady() {
+            eltdfInitAccordions();
+        }
+
+        function eltdfInitAccordions() {
+            var accordion = $('.eltdf-accordion-holder');
+
+            if (accordion.length) {
+                accordion.each(function () {
+                    var thisAccordion = $(this);
+
+                    // For normal accordion type
+                    if (thisAccordion.hasClass('eltdf-accordion')) {
+                        thisAccordion.accordion({
+                            animate: "swing",
+                            collapsible: true,
+                            active: false, // ✅ all closed by default
+                            icons: "",
+                            heightStyle: "content"
+                        });
+                    }
+
+                    // For toggle type accordions
+                    if (thisAccordion.hasClass('eltdf-toggle')) {
+                        var toggleAccordion = $(this),
+                            toggleAccordionTitle = toggleAccordion.find('.eltdf-accordion-title'),
+                            toggleAccordionContent = toggleAccordionTitle.next();
+
+                        toggleAccordion.addClass("accordion ui-accordion ui-accordion-icons ui-widget ui-helper-reset");
+                        toggleAccordionTitle.addClass("ui-accordion-header ui-state-default ui-corner-top ui-corner-bottom");
+                        toggleAccordionContent.addClass("ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom").hide();
+
+                        toggleAccordionTitle.each(function () {
+                            var thisTitle = $(this);
+
+                            thisTitle.on('mouseenter mouseleave', function () {
+                                thisTitle.toggleClass("ui-state-hover");
+                            });
+
+                            thisTitle.on('click', function () {
+                                thisTitle.toggleClass('ui-accordion-header-active ui-state-active ui-state-default ui-corner-bottom');
+                                thisTitle.next().toggleClass('ui-accordion-content-active').slideToggle(400);
+                            });
+                        });
+                    }
+                });
+            }
+        }
 
 
         initMozartSwipers();

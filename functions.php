@@ -34,7 +34,7 @@ function musea_child_styles() {
 	wp_enqueue_script( 'swiper-js', get_stylesheet_directory_uri() . '/assets/lib/swiper-bundle.min.js', [], '11.0.0', true );
 
 
-	wp_enqueue_script( 'neuzin-appear', get_stylesheet_directory_uri() . '/assets/js/scripts.js', [ 'jquery' ], 1.2, true );
+	wp_enqueue_script( 'neuzin-appear', get_stylesheet_directory_uri() . '/assets/js/scripts.js', [ 'jquery' ], 1.4, true );
 
 }
 
