@@ -14,44 +14,55 @@ $holder_classes   = apply_filters( 'musea_elated_filter_blog_holder_classes', $h
 $holder_classes   = implode( ' ', $holder_classes );
 $blog_type        = $eltdf_blog_type;
 do_action( 'musea_elated_action_before_main_content' );
+$has_sidebar = is_active_sidebar( 'sidebar' );
 ?>
 
-    <div class="<?php echo esc_attr( $eltdf_holder_params['holder'] ); ?>">
+    <div class="<?php echo esc_attr( $eltdf_holder_params['holder'] ); ?> <?php echo $has_sidebar ? esc_attr( 'has-sidebar' ) : ''; ?>">
 		<?php do_action( 'musea_elated_action_after_container_open' ); ?>
 
+
         <div class="<?php echo esc_attr( $eltdf_holder_params['inner'] ); ?>">
-            <div class="eltdf-grid-row <?php echo esc_attr( $holder_classes ); ?>">
-				<?php musea_elated_get_sticky_post( $blog_type ) ?>
-            </div>
-            <div class="eltdf-grid-row <?php echo esc_attr( $holder_classes ); ?>">
-					<?php
-					$blog_query    = musea_elated_get_blog_query_child();
-					$paged         = isset( $blog_query->query['paged'] ) ? $blog_query->query['paged'] : 1;
-					$max_num_pages = $blog_query->max_num_pages;
+            <div class="upseo-row">
+                <div class="eltdf-blog-archive">
+                    <div class="upseo-sticky-post eltdf-grid-row <?php echo esc_attr( $holder_classes ); ?>">
+						<?php musea_elated_get_sticky_post( $blog_type ) ?>
+                    </div>
+                    <div class="eltdf-grid-row <?php echo esc_attr( $holder_classes ); ?>">
+						<?php
+						$blog_query    = musea_elated_get_blog_query_child();
+						$paged         = isset( $blog_query->query['paged'] ) ? $blog_query->query['paged'] : 1;
+						$max_num_pages = $blog_query->max_num_pages;
 
-					$blog_classes     = musea_elated_get_blog_list_holder_classes( $blog_type );
-					$blog_data_params = musea_elated_get_blog_holder_data_params( $blog_type );
+						$blog_classes     = musea_elated_get_blog_list_holder_classes( $blog_type );
+						$blog_data_params = musea_elated_get_blog_holder_data_params( $blog_type );
 
-					$params = array(
-						'blog_query'       => $blog_query,
-						'paged'            => $paged,
-						'max_num_pages'    => $max_num_pages,
-						'blog_type'        => $blog_type,
-						'blog_classes'     => $blog_classes,
-						'blog_data_params' => $blog_data_params,
-					);
+						$params = array(
+							'blog_query'       => $blog_query,
+							'paged'            => $paged,
+							'max_num_pages'    => $max_num_pages,
+							'blog_type'        => $blog_type,
+							'blog_classes'     => $blog_classes,
+							'blog_data_params' => $blog_data_params,
+						);
 
-					musea_elated_get_module_template_part( 'templates/lists/' . $blog_type . '/list', 'blog', '', $params );6?>
+						musea_elated_get_module_template_part( 'templates/lists/' . $blog_type . '/list', 'blog', '', $params ); ?>
+                    </div>
                 </div>
-				<?php if ( $sidebar_layout == 'no-sidebar' ) { ?>
-                    <div <?php echo musea_elated_get_sidebar_holder_class(); ?>>
+
+				<?php if ( $has_sidebar ) { ?>
+                    <div class="eltdf-sidebar-holder">
 						<?php get_sidebar(); ?>
                     </div>
 				<?php } ?>
             </div>
+
         </div>
 
-		<?php do_action( 'musea_elated_action_before_container_close' ); ?>
+
+    </div>
+
+
+<?php do_action( 'musea_elated_action_before_container_close' ); ?>
     </div>
 
 <?php do_action( 'musea_elated_action_blog_list_additional_tags' ); ?>
