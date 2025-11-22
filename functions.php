@@ -4,6 +4,13 @@ require_once get_stylesheet_directory() . '/wpbakery/init.php';
 require_once get_stylesheet_directory() . '/inc/meta.php';
 require_once get_stylesheet_directory() . '/inc/customizer.php';
 
+add_action( 'after_setup_theme', function () {
+	add_theme_support( 'editor-styles' );
+
+	// Path is relative to the CHILD theme root
+	add_editor_style( 'editor.css' );
+} );
+
 add_action( 'wp_enqueue_scripts', 'musea_child_styles' );
 function musea_child_styles() {
 	// Parent style
@@ -59,11 +66,7 @@ if ( ! function_exists( 'musea_elated_get_sticky_post' ) ) {
 	 *
 	 * @param $type string with name of list that is loaded
 	 */
-	function musea_elated_get_sticky_post( $type ) {
-		$sticky = get_option( 'sticky_posts' );
-
-		$sticky_post_id = ! empty( $sticky[0] ) ? $sticky[0] : '';
-
+	function musea_elated_get_sticky_post( $type, $sticky_post_id ) {
 		if ( ! $sticky_post_id ) {
 			return;
 		}
@@ -72,7 +75,7 @@ if ( ! function_exists( 'musea_elated_get_sticky_post' ) ) {
 
 		$args = array(
 			'posts_per_page'      => 1,
-			'post__in'            => [$sticky_post_id],
+			'post__in'            => [ $sticky_post_id ],
 			'ignore_sticky_posts' => 1
 		);
 
@@ -101,7 +104,7 @@ if ( ! function_exists( 'musea_elated_get_blog_query_child' ) ) {
 	 *
 	 * @return wp query object
 	 */
-	function musea_elated_get_blog_query_child() {
+	function musea_elated_get_blog_query_child( $ignore_post = null ) {
 		$id                       = musea_elated_get_page_id();
 		$category                 = esc_attr( get_post_meta( $id, 'eltdf_blog_category_meta', true ) );
 		$number_of_posts_per_page = get_post_meta( $id, 'eltdf_show_posts_per_page_meta', true );
@@ -125,8 +128,11 @@ if ( ! function_exists( 'musea_elated_get_blog_query_child' ) ) {
 			'posts_per_page' => $post_number,
 		);
 
-		if($musea_exclude_post) {
-			$query_array['exclude'] = [$musea_exclude_post];
+		if ( $ignore_post ) {
+			$query_array['post__not_in'] = is_array( $ignore_post ) ? $ignore_post : [ $ignore_post ];
+		}
+		if ( $musea_exclude_post ) {
+			$query_array['exclude']            = [ $musea_exclude_post ];
 			$query_array['ignore_sticky_post'] = 1;
 		}
 

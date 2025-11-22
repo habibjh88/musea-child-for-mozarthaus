@@ -15,6 +15,10 @@ $holder_classes   = implode( ' ', $holder_classes );
 $blog_type        = $eltdf_blog_type;
 do_action( 'musea_elated_action_before_main_content' );
 $has_sidebar = is_active_sidebar( 'sidebar' );
+
+$sticky = get_option( 'sticky_posts' );
+
+$sticky_post_id = ! empty( $sticky[0] ) ? $sticky[0] : '';
 ?>
 
     <div class="<?php echo esc_attr( $eltdf_holder_params['holder'] ); ?> <?php echo $has_sidebar ? esc_attr( 'has-sidebar' ) : ''; ?>">
@@ -24,12 +28,14 @@ $has_sidebar = is_active_sidebar( 'sidebar' );
         <div class="<?php echo esc_attr( $eltdf_holder_params['inner'] ); ?>">
             <div class="upseo-row">
                 <div class="eltdf-blog-archive">
+                    <!-- Sticky Post -->
                     <div class="upseo-sticky-post eltdf-grid-row <?php echo esc_attr( $holder_classes ); ?>">
-						<?php musea_elated_get_sticky_post( $blog_type ) ?>
+						<?php musea_elated_get_sticky_post( $blog_type, $sticky_post_id ) ?>
                     </div>
+                    <!-- Blog Post List -->
                     <div class="eltdf-grid-row <?php echo esc_attr( $holder_classes ); ?>">
 						<?php
-						$blog_query    = musea_elated_get_blog_query_child();
+						$blog_query    = musea_elated_get_blog_query_child($sticky_post_id);
 						$paged         = isset( $blog_query->query['paged'] ) ? $blog_query->query['paged'] : 1;
 						$max_num_pages = $blog_query->max_num_pages;
 
@@ -44,6 +50,7 @@ $has_sidebar = is_active_sidebar( 'sidebar' );
 							'blog_classes'     => $blog_classes,
 							'blog_data_params' => $blog_data_params,
 						);
+
 
 						musea_elated_get_module_template_part( 'templates/lists/' . $blog_type . '/list', 'blog', '', $params ); ?>
                     </div>

@@ -5,7 +5,7 @@ Theme URI: https://example.com/
 Description: Child theme for the Musea theme
 Author: Your Name
 Author URI: https://example.com/
-Version: 1.0.7
+Version: 1.0.8.3
 */
 
 :root {
@@ -1307,12 +1307,25 @@ body .eltdf-page-grid {
     justify-content: space-between;
 }
 
+.has-sidebar .eltdf-sidebar-holder,
 .has-sidebar .eltdf-blog-archive {
-    width: calc(100% - 305px);
+    width: 100%;
+    padding-bottom: 50px;
 }
 
-.has-sidebar .eltdf-sidebar-holder {
-    width: 260px;
+@media (min-width: 992px) {
+    .has-sidebar .eltdf-blog-archive {
+        width: calc(100% - 305px);
+    }
+
+    .has-sidebar .eltdf-sidebar-holder {
+        width: 260px;
+    }
+}
+
+
+body.blog .eltdf-sidebar .wp-block-heading {
+    font-size: 28px;
 }
 
 body.blog .eltdf-blog-holder-inner {
@@ -1335,50 +1348,227 @@ body.blog .has-sidebar .eltdf-blog-holder-inner > article {
     gap: 40px;
 }
 
+@media (max-width: 767px) {
+    body.blog .has-sidebar .eltdf-blog-holder-inner > article {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+body.blog .eltdf-blog-holder article.sticky .eltdf-post-title a {
+    color: #525252
+}
+
+body.blog .eltdf-blog-holder article .eltdf-post-title {
+    font-size: 28px;
+}
+
+body.blog .eltdf-blog-holder article .eltdf-post-info-top > div a {
+    color: #444444;
+}
+
+/*Sticky Blog Post*/
 body.blog .upseo-sticky-post .eltdf-blog-holder-inner .eltdf-post-text,
 body.blog .upseo-sticky-post .eltdf-blog-holder-inner .eltdf-post-heading {
     flex: 0 0 50%;
-    margin-bottom: 0!important;
+    margin-bottom: 0 !important;
 }
+
 body.blog .upseo-sticky-post .eltdf-blog-holder-inner .eltdf-post-heading :is(.eltdf-post-image, a, img) {
     height: 100%;
 }
-body.blog .upseo-sticky-post .eltdf-blog-holder-inner .eltdf-post-heading {
-    padding-right: 40px;
+
+body.blog .upseo-sticky-post article.sticky .eltdf-post-title {
+    font-size: 30px;
 }
+
+body.blog .upseo-sticky-post article.sticky .eltdf-post-title a {
+    color: var(--site-primary-color);
+}
+
 body.blog .upseo-sticky-post .eltdf-blog-holder-inner .eltdf-post-heading img {
     height: 100%;
     object-fit: cover;
 }
-body.blog .upseo-sticky-post .eltdf-blog-holder-inner .eltdf-post-heading {
-    height: 350px;
-}
-body.blog .upseo-sticky-post .eltdf-blog-holder-inner .eltdf-post-content {
+
+
+body.blog .upseo-sticky-post .eltdf-blog-holder article .eltdf-post-text {
     display: flex;
+    align-items: center;
 }
+
+.eltdf-blog-holder article .eltdf-post-info-top > *:first-child {
+    margin-left: 0 !important;
+}
+
+@media (min-width: 768px) {
+    body.blog .upseo-sticky-post .eltdf-blog-holder-inner .eltdf-post-content {
+        display: flex;
+    }
+
+    body.blog .upseo-sticky-post .eltdf-blog-holder-inner .eltdf-post-heading {
+        min-height: 350px;
+        box-sizing: border-box;
+        padding-right: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    body.blog .upseo-sticky-post .eltdf-blog-holder article .eltdf-post-text {
+        padding: 30px;
+    }
+}
+
+body.blog .upseo-sticky-post .eltdf-post-text-inner {
+    box-sizing: border-box;
+    padding-right: 30px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
 body.blog .upseo-sticky-post .eltdf-blog-holder-inner {
     display: block;
 }
+
 body.blog .upseo-sticky-post .eltdf-blog-holder-inner .eltdf-post-content {
     background: var(--site-primary-soft);
 
 }
+
 body.blog .upseo-sticky-post .eltdf-blog-holder-inner > article {
     flex: 0 0 100%;
     max-width: 100%;
 }
 
-body.blog {
+body .wp-block-quote {
+    border-left: 4px solid var(--site-primary-color) !important;
+    background: var(--site-primary-soft);
+    text-align: left !important;
+    padding: 36px 50px 34px 40px !important;
+
 }
 
-body.blog {
+body .wp-block-quote p {
+    text-align: left !important;
+    color: var(--site-primary-color) !important;
+    font-size: 1.3em
 }
 
-body.blog {
+body .wp-block-table thead {
+    background: var(--site-primary-color);
+    border: none;
 }
 
-body.blog {
+body .wp-block-table thead :is(td,th) {
+    color: #FFF;
 }
 
-body.blog {
+body .wp-block-button .wp-block-button__link * {
+    color: currentColor
+}
+
+body .wp-block-button .wp-block-button__link {
+    background-color: var(--site-primary-color);
+    color: #FFF !important;
+    padding-top: 11px !important;
+    padding-bottom: 11px !important;
+    font-size: 16px;
+}
+
+body .wp-block-button .wp-block-button__link:hover {
+    background-color: var(--site-primary-dark);
+    color: #FFFFFF;
+}
+
+body .wp-block-table {
+    border: none;
+}
+
+body .wp-block-table tr {
+    border: none;
+}
+
+body .wp-block-table :is(td, th) {
+    border-left: none;
+    border-right: none;
+    text-align: left;
+}
+
+table tbody > tr:nth-child(odd) > td,
+table tbody > tr:nth-child(odd) > th {
+    background-color: hsl(0 0% 50% / .071);
+}
+
+/*Rank math FAQ*/
+
+.rank-math-block {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.rank-math-list-item {
+    padding-top: 12px;
+    border: #555;
+    margin-bottom: 0;
+}
+
+.rank-math-list-item .rank-math-answer {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.rank-math-list-item .rank-math-question {
+    cursor: pointer;
+    margin: 0 !important;
+    position: relative;
+    color: #212121 !important;
+    text-shadow: none !important;
+    transition: 0.4s;
+    font-size: 20px;
+    font-weight: 500 !important;
+    padding-right: 50px;
+    border-bottom: 1px solid #dddddd;
+    padding-bottom: 15px;
+    padding-left: 15px;
+}
+
+.rank-math-list-item .rank-math-question:hover {
+    color: var(--site-primary-color) !important;
+}
+
+.rank-math-list-item .rank-math-question::after {
+    content: "+";
+    position: absolute;
+    right: 14px;
+    top: 2px;
+    font-size: 1.5em;
+}
+
+.rank-math-list-item.active .rank-math-question::after {
+    content: "-";
+    transform: scaleX(1.3);
+}
+
+.rank-math-list-item.active .rank-math-question {
+    border-bottom-color: var(--site-primary-color);
+}
+
+.rank-math-list-item.active {
+    z-index: 2;
+}
+
+.rank-math-list-item.active .rank-math-question {
+    color: var(--site-primary-color) !important;
+}
+
+.eltdf-blog-single h1.wp-block-heading {
+    font-size: 46px;
+}
+
+.eltdf-blog-single h2.wp-block-heading {
+    font-size: 36px;
+}
+
+.eltdf-sidebar .widget .wp-block-heading {
+    font-size: 30px;
 }
