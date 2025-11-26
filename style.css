@@ -5,7 +5,7 @@ Theme URI: https://example.com/
 Description: Child theme for the Musea theme
 Author: Your Name
 Author URI: https://example.com/
-Version: 1.0.8.3
+Version: 1.0.9.5
 */
 
 :root {
@@ -514,8 +514,8 @@ body .eltdf-title-holder::before {
 
 body .eltdf-top-bar {
     z-index: 99999;
+    background: rgb(56 0 0);
 }
-
 
 /*Menu CSS*/
 @media (min-width: 1600px) {
@@ -1323,6 +1323,13 @@ body .eltdf-page-grid {
     }
 }
 
+.single .eltdf-blog-holder.eltdf-blog-single article .eltdf-post-heading {
+    margin-bottom: 15px;
+}
+
+body.single-post .eltdf-page-header::before {
+    content: none;
+}
 
 body.blog .eltdf-sidebar .wp-block-heading {
     font-size: 28px;
@@ -1346,6 +1353,27 @@ body.blog .has-sidebar .eltdf-blog-holder-inner > article {
     flex: 0 0 50%;
     max-width: 50%;
     gap: 40px;
+    display: flex;
+    margin-bottom: 40px;
+}
+
+body.blog .eltdf-blog-holder article .eltdf-post-content {
+    display: flex;
+    flex-direction: column;
+}
+
+body.blog .eltdf-blog-holder article .eltdf-post-text-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body.blog .eltdf-blog-holder.eltdf-blog-standard article .eltdf-post-info-bottom {
+    margin-top: auto;
+}
+
+body.blog .eltdf-blog-holder article .eltdf-post-text {
+    flex: 1;
 }
 
 @media (max-width: 767px) {
@@ -1354,6 +1382,7 @@ body.blog .has-sidebar .eltdf-blog-holder-inner > article {
         max-width: 100%;
     }
 }
+
 
 body.blog .eltdf-blog-holder article.sticky .eltdf-post-title a {
     color: #525252
@@ -1364,7 +1393,7 @@ body.blog .eltdf-blog-holder article .eltdf-post-title {
 }
 
 body.blog .eltdf-blog-holder article .eltdf-post-info-top > div a {
-    color: #444444;
+    /*color: #444444;*/
 }
 
 /*Sticky Blog Post*/
@@ -1380,6 +1409,10 @@ body.blog .upseo-sticky-post .eltdf-blog-holder-inner .eltdf-post-heading :is(.e
 
 body.blog .upseo-sticky-post article.sticky .eltdf-post-title {
     font-size: 30px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 body.blog .upseo-sticky-post article.sticky .eltdf-post-title a {
@@ -1404,6 +1437,7 @@ body.blog .upseo-sticky-post .eltdf-blog-holder article .eltdf-post-text {
 @media (min-width: 768px) {
     body.blog .upseo-sticky-post .eltdf-blog-holder-inner .eltdf-post-content {
         display: flex;
+        flex-direction: row;
     }
 
     body.blog .upseo-sticky-post .eltdf-blog-holder-inner .eltdf-post-heading {
@@ -1571,4 +1605,16 @@ table tbody > tr:nth-child(odd) > th {
 
 .eltdf-sidebar .widget .wp-block-heading {
     font-size: 30px;
+}
+
+body .eltdf-workflow.eltdf-workflow-animate .eltdf-workflow-item .eltdf-workflow-item-inner .eltdf-workflow-text h2 {
+    font-size: 36px;
+}
+
+body .eltdf-workflow .eltdf-workflow-item:nth-of-type(2n) .eltdf-workflow-item-inner .eltdf-workflow-text {
+    padding: 191px 4.5% 0 8%;
+}
+
+body .eltdf-workflow .eltdf-workflow-item .eltdf-workflow-item-inner .eltdf-workflow-text {
+    padding: 191px 8% 0 4.5%;
 }
